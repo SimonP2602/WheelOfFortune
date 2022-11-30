@@ -10,14 +10,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.NavHost
 import com.example.WheelOfFortune.Navigation.Screen
 import com.example.WheelOfFortune.ViewModel.ViewModel
+import com.example.WheelOfFortune.R
 
 @Composable
 fun EndGameScreenComp(navController: NavController){
@@ -33,11 +34,11 @@ fun EndGameScreenComp(navController: NavController){
                     .fillMaxWidth()
                     .height(100.dp))
                 Title(didWin)
-                wordDisplay(text = "The correct word is: ", word = viewmodel.getWord())
+                wordDisplay(text = stringResource(R.string.correctWord), word = viewmodel.getWord())
                 Spacer(modifier = Modifier
                     .height(50.dp)
                     .fillMaxWidth())
-                scoreDisplay(text = "Your score was: ", score = viewmodel.getScore().toString())
+                scoreDisplay(text = stringResource(R.string.finalScore), score = viewmodel.getScore().toString())
                 Spacer(modifier = Modifier
                     .fillMaxWidth()
                     .height(150.dp))
@@ -46,7 +47,7 @@ fun EndGameScreenComp(navController: NavController){
                     colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray)
                 ){
                     Text(
-                        text = "Try Again!"
+                        text = stringResource(R.string.tryAgain)
                     )
                 }
             }
@@ -60,10 +61,10 @@ fun Title(Winner: Boolean){
         .fillMaxWidth()
         .height(100.dp)){
         if(!Winner){
-            Text(text= "No luck! - You ran out of lives", color = Color.White ,modifier = Modifier.fillMaxWidth(), fontSize = 30.sp, textAlign = TextAlign.Center)
+            Text(text= stringResource(R.string.loser), color = Color.White ,modifier = Modifier.fillMaxWidth(), fontSize = 30.sp, textAlign = TextAlign.Center)
         }
         else{
-            Text(text= "Congratulations, you have won!", color = Color.White, modifier = Modifier.fillMaxWidth(), fontSize = 30.sp, textAlign = TextAlign.Center)
+            Text(text= stringResource(R.string.winner), color = Color.White, modifier = Modifier.fillMaxWidth(), fontSize = 30.sp, textAlign = TextAlign.Center)
         }
     }
 }

@@ -1,5 +1,3 @@
-@file:OptIn(ExperimentalMaterialApi::class)
-
 package com.example.WheelOfFortune.View
 
 import android.os.Build
@@ -35,6 +33,7 @@ fun MainScreenComp(navController: NavController) {
     var array = viewModel.wordToChar(word)
     var wheelValue by remember { mutableStateOf(0) }
     var hasSpinnedWheel by remember{ mutableStateOf(false) }
+
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = {
@@ -78,17 +77,17 @@ fun MainScreenComp(navController: NavController) {
                         } },
                         colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green)
                     ){
-                        Text(text = "Submit Guess")
+                        Text(stringResource(R.string.submit))
                     }
                 }
-                Text(text = "Your current wheel value is: " + wheelValue, color = Color.White, )
+                Text(text = stringResource(R.string.wheelValue) + wheelValue, color = Color.White, )
                 Box(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
                     .align(Alignment.CenterHorizontally)){
                     if(!hasSpinnedWheel){
                         Text(
-                            text = "You have to spin the wheel!",
+                            text = stringResource(R.string.notifier),
                             fontSize = 15.sp,
                             textAlign = TextAlign.Center
                         )
@@ -153,12 +152,12 @@ fun Lives(viewModel: ViewModel){
         .fillMaxWidth()
         .height(50.dp)){
         Text(
-            text = "Lives: " + viewModel.getLives().toString(),
+            text = stringResource(R.string.Lives) + viewModel.getLives().toString(),
             textAlign = TextAlign.Start,
             color = Color.White
         )
         Text(
-            text = "Score: " + viewModel.getScore().toString(),
+            text = stringResource(R.string.Score) + viewModel.getScore().toString(),
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.End,
             color = Color.White)
@@ -173,7 +172,7 @@ fun Category(category: String){
         horizontalArrangement = Arrangement.Center
         ) {
         Text(
-            text = "Category: " + category,
+            text = stringResource(R.string.category) + category,
             color = Color.White,
             fontSize = 20.sp,
             textAlign = TextAlign.Center)
@@ -193,7 +192,7 @@ fun GuessLetter(guess: String, onValueChange: (String) -> Unit){
             unfocusedBorderColor = Color.White
         ),
         label = {
-            Text(text = "Enter Guess", color = Color.White)
+            Text(text = stringResource(R.string.guess), color = Color.White)
         }
     )
 }

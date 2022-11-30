@@ -2,13 +2,8 @@ package com.example.WheelOfFortune.ViewModel
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.navigation.NavController
 import com.example.WheelOfFortune.Data.*
-import com.example.WheelOfFortune.Navigation.NavigationController
 import com.example.WheelOfFortune.Navigation.Screen
 import kotlin.random.Random
 

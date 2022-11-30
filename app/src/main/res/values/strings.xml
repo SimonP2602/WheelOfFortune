@@ -1,5 +1,17 @@
 <resources>
-    <string name="app_name">WheelOfFortune</string>
+    <string name="app_name">s215723 WheelOfFortune</string>
     <string name="header">Wheel Of Fortune</string>
     <string name="spinWheel">Spin the wheel</string>
+    <string name="submit">Submit Guess</string>
+    <string name="wheelValue">Your current wheel value is: </string>
+    <string name="notifier">You have to spin the wheel!</string>
+    <string name="Lives">Lives: </string>
+    <string name="Score">Score: </string>
+    <string name="category">Category: </string>
+    <string name="guess">Enter Guess</string>
+    <string name="correctWord">The correct word is: </string>
+    <string name="finalScore">Your score was: </string>
+    <string name="tryAgain">Try Again!</string>
+    <string name="loser">No luck! - You ran out of lives</string>
+    <string name="winner">Congratulations, you have won!</string>
 </resources>
