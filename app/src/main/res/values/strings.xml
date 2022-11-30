@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">WheelOfFortune</string>
+    <string name="header">Wheel Of Fortune</string>
+    <string name="spinWheel">Spin the wheel</string>
+</resources>
