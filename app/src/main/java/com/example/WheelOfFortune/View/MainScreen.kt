@@ -27,7 +27,7 @@ fun MainScreenComp(navController: NavController, viewModel: ViewModel) {
     val scaffoldState = rememberScaffoldState()
 
     var guess by remember { mutableStateOf("") }
-    var word = viewModel.getRandomWord()
+    var word = viewModel.getWord()
     var array = viewModel.wordToChar(word)
     var wheelValue by remember { mutableStateOf(0) }
     var hasSpinnedWheel by remember{ mutableStateOf(false) }
@@ -51,6 +51,7 @@ fun MainScreenComp(navController: NavController, viewModel: ViewModel) {
                     Text(stringResource(R.string.newTry), color = Color.White, fontSize = 20.sp)
                 }
                 Spacer(modifier = Modifier.fillMaxWidth().height(10.dp))
+                Text(text = stringResource(R.string.wheelValue) + wheelValue, color = Color.White)
                 GuessLetter(guess, onValueChange = {guess = it})
                 Row(modifier = Modifier
                     .fillMaxWidth()
@@ -76,7 +77,6 @@ fun MainScreenComp(navController: NavController, viewModel: ViewModel) {
                         Text(stringResource(R.string.submit))
                     }
                 }
-                Text(text = stringResource(R.string.wheelValue) + wheelValue, color = Color.White, )
                 Box(modifier = Modifier
                     .fillMaxWidth()
                     .height(20.dp)
@@ -84,6 +84,7 @@ fun MainScreenComp(navController: NavController, viewModel: ViewModel) {
                     if(!hasSpinnedWheel){
                         Text(
                             text = stringResource(R.string.notifier),
+                            color = Color.White,
                             fontSize = 15.sp,
                             textAlign = TextAlign.Center
                         )

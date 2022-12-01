@@ -46,7 +46,7 @@ fun EndGameScreenComp(navController: NavController, viewmodel: ViewModel){
                         navController.navigate(Screen.MainScreen.route)
                               viewmodel.reset()
                               },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Green),
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                 ){
                     Text(

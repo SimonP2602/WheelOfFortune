@@ -3,8 +3,8 @@
     <string name="header">Wheel Of Fortune</string>
     <string name="spinWheel">Spin the wheel</string>
     <string name="submit">Submit Guess</string>
-    <string name="wheelValue">Your current wheel value is: </string>
-    <string name="notifier">You have to spin the wheel!</string>
+    <string name="wheelValue">Possible reward: </string>
+    <string name="notifier">Spin the wheel to submit guess!</string>
     <string name="Lives">Lives: </string>
     <string name="Score">Score: </string>
     <string name="category">Category: </string>

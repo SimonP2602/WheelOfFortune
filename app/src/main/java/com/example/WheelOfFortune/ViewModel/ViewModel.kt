@@ -90,7 +90,7 @@ class ViewModel {
     }
 
     fun getWheelValue(): Int{
-        val random = (1..6).random()
+        val random = (1..5).random()
 
         var wheelValue = wheel.get(random)
         return wheelValue
