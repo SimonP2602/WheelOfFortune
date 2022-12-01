@@ -11,7 +11,8 @@
     <string name="guess">Enter Guess</string>
     <string name="correctWord">The correct word is: </string>
     <string name="finalScore">Your score was: </string>
-    <string name="tryAgain">Try Again!</string>
+    <string name="tryAgain">Play Again!</string>
     <string name="loser">No luck! - You ran out of lives</string>
     <string name="winner">Congratulations, you have won!</string>
+    <string name="newTry">Ouch wrong guess, try again!</string>
 </resources>

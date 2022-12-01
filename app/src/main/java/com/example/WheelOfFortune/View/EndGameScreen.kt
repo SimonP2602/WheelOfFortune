@@ -21,8 +21,7 @@ import com.example.WheelOfFortune.ViewModel.ViewModel
 import com.example.WheelOfFortune.R
 
 @Composable
-fun EndGameScreenComp(navController: NavController){
-    var viewmodel = ViewModel()
+fun EndGameScreenComp(navController: NavController, viewmodel: ViewModel){
     var didWin = viewmodel.getBoolean()
     Scaffold(
         content = {
@@ -43,8 +42,12 @@ fun EndGameScreenComp(navController: NavController){
                     .fillMaxWidth()
                     .height(150.dp))
                 Button(
-                    onClick = { navController.navigate(Screen.MainScreen.route) },
-                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray)
+                    onClick = {
+                        navController.navigate(Screen.MainScreen.route)
+                              viewmodel.reset()
+                              },
+                    colors = ButtonDefaults.buttonColors(backgroundColor = Color.Gray),
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 ){
                     Text(
                         text = stringResource(R.string.tryAgain)
@@ -91,16 +94,4 @@ fun scoreDisplay(text: String, score: String){
         .height(50.dp)){
         Text(text= text + score, color = Color.White, fontSize = 20.sp, textAlign = TextAlign.Center)
     }
-}
-
-
-
-
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun EndGameScreenPreview(){
-    //EndGameScreenComp(word = "Ronaldo", navController = NavController)
 }

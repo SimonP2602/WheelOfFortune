@@ -15,13 +15,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavController
 import com.example.WheelOfFortune.Navigation.NavigationController
 import com.example.WheelOfFortune.View.MainScreenComp
+import com.example.WheelOfFortune.ViewModel.ViewModel
 
 class MainActivity : ComponentActivity() {
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-                NavigationController().NavController()
+            var viewModel = ViewModel()
+                NavigationController().NavController(viewModel)
             }
         }
     }

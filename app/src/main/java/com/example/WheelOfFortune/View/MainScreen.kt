@@ -23,11 +23,9 @@ import com.example.WheelOfFortune.ViewModel.ViewModel
 @RequiresApi(Build.VERSION_CODES.N)
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun MainScreenComp(navController: NavController) {
+fun MainScreenComp(navController: NavController, viewModel: ViewModel) {
     val scaffoldState = rememberScaffoldState()
 
-
-    var viewModel = ViewModel()
     var guess by remember { mutableStateOf("") }
     var word = viewModel.getRandomWord()
     var array = viewModel.wordToChar(word)
@@ -36,13 +34,6 @@ fun MainScreenComp(navController: NavController) {
 
     Scaffold(
         scaffoldState = scaffoldState,
-        topBar = {
-            Row(modifier = Modifier
-                .fillMaxWidth()
-                .background(color = Color(0XFF6E0DEE))){
-                Lives(viewModel = viewModel)
-            }
-        },
         content = {
             Column(
                 modifier = Modifier
@@ -50,11 +41,16 @@ fun MainScreenComp(navController: NavController) {
                     .fillMaxHeight()
                     .background(color = Color(0XFF6E0DEE))
             ){
+                Lives(viewModel.getLives().toString(), viewModel.getScore().toString())
                 Header(stringResource(id = R.string.header))
                 displayWordAndCategory(viewModel = viewModel, word = word, array)
                 Spacer(modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp))
+                    .height(10.dp))
+                if(viewModel.tryAgain){
+                    Text(stringResource(R.string.newTry), color = Color.White, fontSize = 20.sp)
+                }
+                Spacer(modifier = Modifier.fillMaxWidth().height(10.dp))
                 GuessLetter(guess, onValueChange = {guess = it})
                 Row(modifier = Modifier
                     .fillMaxWidth()
@@ -65,10 +61,10 @@ fun MainScreenComp(navController: NavController) {
                                 wheelValue = viewModel.getWheelValue()
                                 hasSpinnedWheel = true
                             } },
-                        colors = ButtonDefaults.buttonColors(backgroundColor = Color.DarkGray)
+                        colors = ButtonDefaults.buttonColors(backgroundColor = Color.Blue)
                     )
                     {
-                        Text(stringResource(R.string.spinWheel))
+                        Text(stringResource(R.string.spinWheel), color = Color.White)
                     }
                     Button(
                         onClick = {if(hasSpinnedWheel){
@@ -147,17 +143,17 @@ fun Header(text: String){
 }
 
 @Composable
-fun Lives(viewModel: ViewModel){
+fun Lives(lives: String, score: String){
     Row(modifier = Modifier
         .fillMaxWidth()
         .height(50.dp)){
         Text(
-            text = stringResource(R.string.Lives) + viewModel.getLives().toString(),
+            text = stringResource(R.string.Lives) + lives,
             textAlign = TextAlign.Start,
             color = Color.White
         )
         Text(
-            text = stringResource(R.string.Score) + viewModel.getScore().toString(),
+            text = stringResource(R.string.Score) + score,
             modifier = Modifier.fillMaxWidth(),
             textAlign = TextAlign.End,
             color = Color.White)

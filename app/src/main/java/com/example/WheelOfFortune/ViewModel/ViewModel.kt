@@ -8,45 +8,52 @@ import com.example.WheelOfFortune.Navigation.Screen
 import kotlin.random.Random
 
 class ViewModel {
-    var data = Lives().lives
     var wordMap = categories()
-    var total = Score().score
     var hiddenMap = hiddenValues().hiddenMap
     var wheel = scoreValues().scoreValues
-    var Winner = Winner().Winner
+    var data: Data
     var guessedCorrect = false
-    var dataWord = Word().word
+    var tryAgain = false
 
+    init {
+        data = Data(lives = 5, score = 0, word = getRandomWord(), winner = false)
+    }
+
+    fun reset(){
+        data.lives = 5
+        data.score = 0
+        data.word = getRandomWord()
+        data.winner = false
+    }
 
     fun getLives(): Int {
-        return data
+        return data.lives
     }
 
     fun updateLives(){
-        data.dec()
+        data.lives--
     }
 
     fun getScore(): Int{
-        return total
+        return data.score
     }
 
     fun updateScore(value: Int){
         if(value == 0){
-            total = 0
+            data.score = 0
         }
-        else { total = total + value }
+        else { data.score = data.score + value }
     }
 
     fun getRandomWord(): String {
-        val random = Random.nextInt(0,2)
+        val random = Random.nextInt(1,23)
         var word = wordMap.categoryMap.entries.elementAt(random)
-        dataWord = word.toString()
 
         return word.component1()
     }
 
     fun getWord(): String {
-        return dataWord
+        return data.word
     }
 
     fun wordToChar(word: String): CharArray{
@@ -65,13 +72,7 @@ class ViewModel {
     fun createHashMap(char: Char){
         var hidden = true
 
-        val random = Random.nextInt(0,4)
-        if(random == 1){
-            hidden = false
-        }
-
         hiddenMap.put(char, hidden)
-
     }
 
     fun getHiddenValue(char: Char): Boolean{
@@ -89,7 +90,7 @@ class ViewModel {
     }
 
     fun getWheelValue(): Int{
-        val random = Random.nextInt(0,6)
+        val random = (1..6).random()
 
         var wheelValue = wheel.get(random)
         return wheelValue
@@ -97,28 +98,33 @@ class ViewModel {
 
 
     fun getBoolean(): Boolean{
-        return Winner
+        return data.winner
     }
 
     fun setBoolean(newValue: Boolean){
-        Winner = newValue
+        data.winner = newValue
     }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
     fun isGuessCorrect(guess: String, word: String, value: Int, array: CharArray ,navController: NavController){
-        if (guess contentEquals(word)){
+        guessedCorrect = false
+        var tempGuess = guess.uppercase()
+        if (tempGuess contentEquals(word)){
             setBoolean(true)
             navController.navigate(Screen.EndGameScreen.route)
         }
         for(i in array){
-            if(i == guess.toCharArray()[0]){
-                setHiddenValue(guess.toCharArray()[0])
+            if(i == tempGuess.toCharArray()[0]){
+                setHiddenValue(tempGuess.toCharArray()[0])
+                guessedCorrect = true
                 updateScore(value)
+                tryAgain = false
             }
         }
         if(!guessedCorrect){
             updateLives()
+            tryAgain = true
             if(getLives() == 0){
                 setBoolean(false)
                 navController.navigate(Screen.EndGameScreen.route)
